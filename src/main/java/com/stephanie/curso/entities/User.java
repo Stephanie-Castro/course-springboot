@@ -114,6 +114,11 @@ public class User implements Serializable{
 		return true;
 	}
 	
+	//src/main/resources/application-test.properties
+		//acessar 	http://localhost:8080/h2-console
+			//JDBC URL: jdbc:h2:mem:testdb
+			//user: sa
+			//password:
 	
 	
 	
