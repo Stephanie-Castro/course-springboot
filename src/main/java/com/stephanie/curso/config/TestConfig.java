@@ -55,6 +55,13 @@ public class TestConfig implements CommandLineRunner { //ao implementar CommandL
 		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
 		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 		
+		p1.getCategories().add(cat2);
+		p2.getCategories().add(cat1);
+		p2.getCategories().add(cat3);
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
+		
 		userReposotory.saveAll(Arrays.asList(u1, u2)); //apartir do objeto userReposotory, chamamos a operação savelAll que passa uma lista de usuários que irá ser salva no Banco de Dados
 		orderReposotory.saveAll(Arrays.asList(o1, o2, o3));
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
