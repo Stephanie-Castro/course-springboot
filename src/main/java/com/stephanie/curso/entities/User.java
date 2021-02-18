@@ -2,10 +2,17 @@ package com.stephanie.curso.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 //interface Serializable que define nos objetos quando se quer quer esse objetos
 //possam ser transformados em cadeias de bytes para que o objeto trafegue na rede, possa 
 //ser gravado em arquivos e outros...
 //add default serial version ID
+//Colocar anotation do JPA para instruir o JPA como converter os objetos para o modelo relacional //import javax.persistence.Entity;
+@Entity
 public class User implements Serializable{
 	
 	/**
@@ -13,7 +20,8 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //autoincremented ID
 	private Long id;
 	private String nome;
 	private String email;
