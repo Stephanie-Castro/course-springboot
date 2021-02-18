@@ -1,11 +1,17 @@
 package com.stephanie.curso.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //interface Serializable que define nos objetos quando se quer quer esse objetos
 //possam ser transformados em cadeias de bytes para que o objeto trafegue na rede, possa 
@@ -13,6 +19,7 @@ import javax.persistence.Id;
 //add default serial version ID
 //Colocar anotation do JPA para instruir o JPA como converter os objetos para o modelo relacional //import javax.persistence.Entity;
 @Entity
+@Table(name = "tb_user")
 public class User implements Serializable{
 	
 	/**
@@ -27,6 +34,10 @@ public class User implements Serializable{
 	private String email;
 	private String phone;
 	private String password;
+	
+	@JsonIgnore //ou cliente vai chamar a lista de pedidos que vai mostra cliente, que vai mostra as lsitas, e vai ficar em loop até estourar...
+	@OneToMany(mappedBy = "client") //Anotation do jpa Um para muitos, que é mapeado pelo atributo client
+	private List<Order> orders = new ArrayList<>();
 	
 	public User() {
 		
@@ -85,6 +96,10 @@ public class User implements Serializable{
 		this.password = password;
 	}
 	
+	public List<Order> getOrders() {
+		return orders;
+	}
+	
 	
 	//botão direito -> source -> generate hashcode() e equals()
 	//só para o ID, mas pde fazer pro que quiser
@@ -113,6 +128,7 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 	//src/main/resources/application-test.properties
 		//acessar 	http://localhost:8080/h2-console
